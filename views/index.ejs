@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>A mysql todo list app in Express/Node</title>
+	<title>A mysql ToDo list app in Express/Node</title>
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,7 +13,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 text-center">
-		<h1>Your ToDo List...</h1>
+			<h3><%= message %></h3>
+			<h1>Your ToDo List...</h1>
 			<form class="form-inline" action="/addItem" method="post">
 				<div class="form-group">
 					<div class="input-group">
@@ -28,20 +29,24 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12 text-center">
+		<div class="col-sm-12">
 			<table class="table">
 				<tr>
 					<th>Task Name</th>
 					<th>Task Due Date</th>
-					<th> Edit</th>
+					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
+			<% for(let i = 0; i<taskArray.length; i++) { %>
 				<tr>
-					<td>-</td>
-					<td>-</td>
+					<td><%= taskArray[i].taskName %></td>
+					<td><%= taskArray[i].taskDate %></td>
 					<td><button class="btn btn-warning">Edit</button></td>					
-					<td><button class="btn btn-danger">Delete</button></td>					
+					<td><a href="/delete/<%= taskArray[i].id%>">
+						<button class="btn btn-danger">Delete</button>
+					</td>					
 				</tr>
+			<% } %>
 			</table>
 		</div>
 	</div>
